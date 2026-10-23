@@ -8,26 +8,28 @@ def load_animals():
 
 
 def create_animals_info(data):
-    """Erstellt einen String mit den Informationen aller Tiere."""
+    """Erstellt HTML-Karten mit den Informationen aller Tiere."""
     output = ""
 
     for animal_data in data:
         characteristics = animal_data.get("characteristics", {})
 
+        output += '<li class="cards__item">\n'
+
         if "name" in animal_data:
-            output += f"Name: {animal_data['name']}\n"
+            output += f"Name: {animal_data['name']}<br/>\n"
 
         if "diet" in characteristics:
-            output += f"Diet: {characteristics['diet']}\n"
+            output += f"Diet: {characteristics['diet']}<br/>\n"
 
         locations = animal_data.get("locations", [])
         if locations:
-            output += f"Location: {locations[0]}\n"
+            output += f"Location: {locations[0]}<br/>\n"
 
         if "type" in characteristics:
-            output += f"Type: {characteristics['type']}\n"
+            output += f"Type: {characteristics['type']}<br/>\n"
 
-        output += "\n"
+        output += "</li>\n"
 
     return output
 
