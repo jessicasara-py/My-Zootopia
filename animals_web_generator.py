@@ -23,27 +23,32 @@ def serialize_animal(animal_obj):
         )
 
     characteristics = animal_obj.get("characteristics", {})
+    locations = animal_obj.get("locations", [])
 
-    output.append('  <p class="card__text">\n')
+    output.append('  <div class="card__text">\n')
+    output.append('    <ul class="animal__details">\n')
 
     if "diet" in characteristics:
         output.append(
-            f'    <strong>Diet:</strong> {characteristics["diet"]}<br/>\n'
+            f'      <li class="animal__detail"><strong>Diet:</strong> '
+            f'{characteristics["diet"]}</li>\n'
         )
 
-    locations = animal_obj.get("locations", [])
     if locations:
         output.append(
-            f'    <strong>Location:</strong> {locations[0]}<br/>\n'
+            f'      <li class="animal__detail"><strong>Location:</strong> '
+            f'{locations[0]}</li>\n'
         )
 
     if "type" in characteristics:
         output.append(
-            f'    <strong>Type:</strong> {characteristics["type"]}<br/>\n'
+            f'      <li class="animal__detail"><strong>Type:</strong> '
+            f'{characteristics["type"]}</li>\n'
         )
 
-    output.append("  </p>\n")
-    output.append("</li>\n")
+    output.append('    </ul>\n')
+    output.append('  </div>\n')
+    output.append('</li>\n')
 
     return "".join(output)
 
