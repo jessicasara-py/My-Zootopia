@@ -85,13 +85,25 @@ def main():
         print(f"File not found: {error.filename}")
 
     except json.JSONDecodeError as error:
-        print(f"Invalid JSON: {error}")
+        print(
+            "Error: The file 'animals_data.json' contains invalid data. "
+            "Please check that the file contains valid JSON."
+        )
 
     except PermissionError:
         print("Error: Permission denied.")
 
-    except OSError as error:
-        print(f"File error: {error}")
+    except IsADirectoryError:
+        print(
+            "Error: A directory was provided instead of a file. "
+            "Please check the file path."
+        )
+
+    except OSError:
+        print(
+            "Error: A file operation failed. "
+            "Please check the file path and access permissions."
+        )
 
 
 if __name__ == "__main__":
